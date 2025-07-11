@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will You Be Mine?</title>
+  <style>
+    body {
+      background: #fff0f5;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #d63384;
+      margin-bottom: 50px;
+    }
+
+    .buttons {
+      position: relative;
+      width: 300px;
+      height: 150px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      position: absolute;
+      transition: transform 0.3s ease, top 0.3s, left 0.3s;
+    }
+
+    .yes {
+      background-color: #28a745;
+      color: white;
+      left: 30px;
+      top: 50px;
+    }
+
+    .no {
+      background-color: #dc3545;
+      color: white;
+      left: 160px;
+      top: 50px;
+    }
+
+    .yes:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Will You Be Mine?</h1>
+  <div class="buttons">
+    <button class="yes" onclick="alert('Yay! You said Yes! 💖')">Yes</button>
+    <button class="no" id="noBtn">No</button>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const buttonsContainer = document.querySelector('.buttons');
+
+    noBtn.addEventListener('click', () => {
+      const containerWidth = buttonsContainer.clientWidth - noBtn.offsetWidth;
+      const containerHeight = buttonsContainer.clientHeight - noBtn.offsetHeight;
+      const newX = Math.random() * containerWidth;
+      const newY = Math.random() * containerHeight;
+      noBtn.style.left = `${newX}px`;
+      noBtn.style.top = `${newY}px`;
+    });
+  </script>
+
+</body>
+</html>
