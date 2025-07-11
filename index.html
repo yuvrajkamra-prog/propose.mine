@@ -14,12 +14,14 @@
       height: 100vh;
       margin: 0;
       overflow: hidden;
+      position: relative;
     }
 
     h1 {
       font-size: 3rem;
       color: #d63384;
       margin-bottom: 50px;
+      text-align: center;
     }
 
     .buttons {
@@ -61,22 +63,34 @@
 
   <h1>Will You Be Mine?</h1>
   <div class="buttons">
-    <button class="yes" onclick="alert('Yay! You said Yes! 💖')">Yes</button>
+    <button class="yes" onclick="sayYes()">Yes</button>
     <button class="no" id="noBtn">No</button>
   </div>
 
+  <!-- Confetti script from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
   <script>
     const noBtn = document.getElementById('noBtn');
-    const buttonsContainer = document.querySelector('.buttons');
+    const container = document.querySelector('.buttons');
 
     noBtn.addEventListener('click', () => {
-      const containerWidth = buttonsContainer.clientWidth - noBtn.offsetWidth;
-      const containerHeight = buttonsContainer.clientHeight - noBtn.offsetHeight;
-      const newX = Math.random() * containerWidth;
-      const newY = Math.random() * containerHeight;
+      const maxX = container.clientWidth - noBtn.offsetWidth;
+      const maxY = container.clientHeight - noBtn.offsetHeight;
+      const newX = Math.random() * maxX;
+      const newY = Math.random() * maxY;
       noBtn.style.left = `${newX}px`;
       noBtn.style.top = `${newY}px`;
     });
+
+    function sayYes() {
+      confetti({
+        particleCount: 150,
+        spread: 80,
+        origin: { y: 0.6 }
+      });
+      alert('Yay! You said Yes! 💖');
+    }
   </script>
 
 </body>
